@@ -21,21 +21,27 @@ function getRepos() {
                 repos.forEach((repo) => {
                     // Main Div
                     let mainDiv = document.createElement("div");
-                    mainDiv.className = "repo-box"
-                    let repoName = document.createTextNode(repo.name);
+                    mainDiv.className = "repo-box";
+                    let repoName = document.createElement("span")
+                    repoName.className = "name-repo"
+                    let repoText = document.createTextNode(repo.name);
+                    repoName.appendChild(repoText)
                     mainDiv.appendChild(repoName);
                     // visit URL repos
                     let theUrl = document.createElement("a");
                     theUrl.href = `https://github.com/${theInput.value}/${repo.name}`;
                     theUrl.setAttribute("target", "_blank");
-                    let textUrl = document.createTextNode("Visit")
-                    theUrl.appendChild(textUrl)
+                    let textUrl = document.createTextNode("Visit");
+                    theUrl.appendChild(textUrl);
                     mainDiv.appendChild(theUrl);
-                    // stars Count 
-                    let starsSpan = document.createElement("span")
-                    let starsText= document.createTextNode(`Stars ${repo.stargazers_count}`)
-                    starsSpan.appendChild(starsText)
-                    mainDiv.appendChild(starsSpan)
+                    // stars Count
+                    let starsSpan = document.createElement("span");
+                    starsSpan.className = "stars"
+                    let starsText = document.createTextNode(
+                        `Stars ${repo.stargazers_count}`
+                    );
+                    starsSpan.appendChild(starsText);
+                    mainDiv.appendChild(starsSpan);
                     // Append The Main Div to container
                     reposData.appendChild(mainDiv);
                 });
